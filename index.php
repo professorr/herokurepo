@@ -1,17 +1,14 @@
 <?php
     $BASE_URL = "http://query.yahooapis.com/v1/public/yql";
+    $sql = "select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='izmir, tr' )and u='c'";
+    $URL = $BASE_URL . "?q=" . urlencode($sql) . "&format=json";
+    $data=file_get_contents($URL);
 
-    $yql_query = 'select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="amaravathi")';
-    $yql_query_url = $BASE_URL . "?q=" . urlencode($yql_query) . "&format=json";
-
-    // Make call with cURL
-    $session = curl_init($yql_query_url);
-    curl_setopt($session, CURLOPT_RETURNTRANSFER,true);
-    $json = curl_exec($session);
-    // Convert JSON to PHP object
-    $phpObj =  json_decode($json);
-   echo $phpObj->query->results->channel->item->condition->text
-
-
-
+    $parse=json_decode($data);
+    foreach ($parse->query->results->channel->item->forecast as $key => $value)
+    {
+      echo "<ul>";
+      echo '<li>'.$value->date.' - '.$value->code.' - '.$value->text.' - '.$value->high.'&degC - '.$value->low.'&degC</li>';
+      echo "</ul>";
+    }
 ?>
