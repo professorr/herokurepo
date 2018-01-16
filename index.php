@@ -1,1 +1,8 @@
-<?php include_once("home.html"); ?>
+<?php    
+<table>
+         <tr>
+             <td>Name</td>
+             <td><?php echo $name;?></td>
+         </tr>
+ </table>
+?>
