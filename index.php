@@ -10,7 +10,7 @@
     $json = curl_exec($session);
     // Convert JSON to PHP object
     $phpObj =  json_decode($json);
-    echo '<pre>';print_r($phpObj).'<pre>';
+   echo $phpObj->query->results->channel->item->condition->text
 
 
 
