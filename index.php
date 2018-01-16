@@ -1,8 +1,8 @@
-<?php    
-<table>
-         <tr>
-             <td>Name</td>
-             <td><?php echo $name;?></td>
-         </tr>
- </table>
+<?php
+     echo "<table>";
+     echo "<tr>";
+     echo "<td>Name</td>";
+     echo "<td>".$name."</td>";
+     echo "</tr>";
+     echo "</table>";
 ?>
