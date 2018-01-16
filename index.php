@@ -1,8 +1,15 @@
 <?php
-     echo "<table>";
-     echo "<tr>";
-     echo "<td>Name</td>";
-     echo "<td>".$name."</td>";
-     echo "</tr>";
-     echo "</table>";
+function website_wetter()
+            {
+
+                $api = simplexml_load_string(utf8_encode(file_get_contents("feed://weather.yahooapis.com/forecastrss?w=641148&u=c")));
+
+                $wetter = array();
+
+                $wetter['stadt'] = $api->rss->channel->item->title->data;
+            }
+
+            $wetter = website_wetter();
+
+            echo "<h1>".$wetter['stadt'].":</h1>\n";
 ?>
